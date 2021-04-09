@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::resource('product', ProductController::class)->only([
+    'index', 'show', 'store', 'update', 'destroy'
+]);
+
+Route::resource('type', ProductTypeController::class)->only([
+    'index', 'store', 'update'
+]);
